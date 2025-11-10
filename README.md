@@ -2,7 +2,7 @@
 En webapp for å organisere husarbeid og oppgaver i hjemmet, samt fordeling av oppgaver på medlemmer i husstanden.
 # Alt i orden 🏡
 
-### 📅 Dag 1 – Oppstart og planlegging
+###  Dag 1 – Oppstart og planlegging
 
 **Formål med prosjektet:**  
 En enkel og brukervennlig webapp for å organisere husarbeid i en husholdning.  
@@ -57,4 +57,38 @@ mulig-> Medlemmer som modal: legge til navn via skjema (lagres i localStorage).
 - Begynne å teste enkel **to-do-funksjon** (legge til og fullføre oppgaver i localStorage).
 
 ---
+##  Oppdatering – 10. november
+
+I dag jobbet jeg videre med **forsiden (index.html)** og **grunnstilen (base.css)**.
+
+### Endringer gjort:
+- La til ekstra styling for startsiden:
+  - Seksjon for værinformasjon
+  - Snarveier med knapper og hover-effekt
+  - Oppdatert farger, padding og layout
+- Testet “Go Live” for å se siden i nettleser
+- Lærte hvordan man bruker `git add`, `commit` og `push` for å oppdatere GitHub
+
+### Hvorfor:
+Disse oppdateringene gir startsiden et ryddig og oversiktlig uttrykk, og gjør det lettere å bygge videre på API-integrasjonen for vær og chatbot senere.
+
+### Neste steg:
+- Legge inn JavaScript for å hente faktisk værdata fra et API
+- Starte på oppgavesiden (tasks.html)
+
+
+
+
+
+###  To-do (teknisk)
+
+- [ ] Legge inn vær-API (OpenWeather) på Hjem-siden  
+- [ ] Lage oppgaveside (tasks.html) med skjema for nye oppgaver  
+- [ ] Legge til funksjon for å markere oppgaver som fullført  
+- [ ] Lagre oppgaver i localStorage slik at de ikke forsvinner ved oppdatering  
+- [ ] Oppdatere done.html med historikk over fullførte oppgaver  
+- [ ] Implementere chatbot (OpenAI API) tilgjengelig på alle sider  
+- [ ] Teste og justere responsivitet (mobil, nettbrett, PC)  
+- [ ] Legge til enkel validering på skjema (tomt felt, frist osv.)  
+- [ ] Oppdatere README.md med fremdrift etter hver arbeidsøkt  
 
