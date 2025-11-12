@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
+  <!-- Grunnleggende metadata -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Sidetittel -->
   <title>Alt i orden | Hjem</title>
+
+  <!-- Koble til hovedstilark -->
   <link rel="stylesheet" href="styles/base.css" />
 </head>
+
 <body>
+  <!--  HEADER -->
+  <!-- logo/tittel og hovednavigasjon -->
   <header>
     <h1>Alt i orden 🏡</h1>
     <nav>
@@ -16,17 +24,26 @@
     </nav>
   </header>
 
+  <!-- HOVEDINNHOLD -->
   <main>
+
+    <!--  Introduksjon -->
     <section class="intro">
-      <h2>Velkommen hjem!</h2>
-      <p>Få oversikt over oppgaver og vær i dag ☀️</p>
+      <h2>Orden i hverdagen starter her</h2>
+      <p>Få et daglig forslag til husarbeid basert på været ☀️</p>
     </section>
 
+    <!-- Værseksjon -->
+    <!-- vær-API integreres og gir forslag -->
     <section id="weather">
       <h3>Dagens vær</h3>
       <div id="weather-info">Laster værdata...</div>
+      <!-- Plass til daglig forslag senere -->
+      <p id="weather-tip"></p>
     </section>
 
+    <!--  Snarveier -->
+    <!-- Knapper som leder til de andre sidene -->
     <section class="shortcuts">
       <h3>Snarveier</h3>
       <div class="buttons">
@@ -34,12 +51,16 @@
         <a href="done.html" class="btn">Fullførte</a>
       </div>
     </section>
+
   </main>
 
+  <!--  FOOTER -->
   <footer>
     <p>© 2025 Alt i orden</p>
   </footer>
 
+  <!-- JavaScript kobling -->
+  <!-- Hovedlogikken (vær, forslag, chatbot osv.) -->
   <script src="scripts/app.js"></script>
 </body>
 </html>

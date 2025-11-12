@@ -7,25 +7,60 @@
   <link rel="stylesheet" href="styles/base.css" />
 </head>
 <body>
+  <!-- HEADER -->
   <header>
     <h1>Fullførte oppgaver</h1>
     <nav>
       <a href="index.html">Hjem</a>
       <a href="tasks.html">Oppgaver</a>
+      <a href="done.html" aria-current="page">Fullførte</a>
     </nav>
   </header>
 
+  <!-- HOVEDINNHOLD -->
   <main>
-    <section id="done-section">
-      <h2>Hurra 🎉 Her er oppgavene du har fullført!</h2>
-      <ul id="doneList"></ul>
+    <section id="done-section" class="card">
+      <h2>Oversikt over fullførte</h2>
+      <ul id="doneList" class="list"></ul>
+      <p id="emptyDone">Ingen fullførte oppgaver enda.</p>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <p>© 2025 Alt i orden</p>
   </footer>
 
-  <script src="scripts/tasks.js"></script>
+  <!-- SCRIPTS -->
+  <script src="scripts/storage.js"></script>
+  <script>
+    // Leser fullførte oppgaver fra localStorage og viser dem
+    const list = document.getElementById('doneList');
+    const empty = document.getElementById('emptyDone');
+
+    function renderDone() {
+      const items = window.Store.load(window.Store.keys.DONE);
+      list.innerHTML = '';
+      if (!items.length) {
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+
+      for (const t of items) {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <div>
+            <strong>${t.title}</strong>
+            <div class="meta">
+              ${t.category ?? ''}${t.assignee ? ' • ' + t.assignee : ''}${t.completedAt ? ' • fullført: ' + t.completedAt.slice(0,10) : ''}
+            </div>
+          </div>`;
+        list.appendChild(li);
+      }
+    }
+
+    renderDone();
+  </script>
 </body>
 </html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alt i orden | Oppgaver</title>
+  <link rel="stylesheet" href="styles/base.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <h1>Oppgaver</h1>
+    <nav>
+      <a href="index.html">Hjem</a>
+      <a href="tasks.html" aria-current="page">Oppgaver</a>
+      <a href="done.html">Fullførte</a>
+    </nav>
+  </header>
+
+  <!-- HOVEDINNHOLD -->
+  <main>
+    <!-- Skjema for ny oppgave (kobles på senere) -->
+    <section class="card">
+      <h2>Legg til oppgave</h2>
+      <form id="taskForm" novalidate>
+        <label>
+          Tittel *
+          <input id="title" type="text" required placeholder="F.eks. Støvsuge stua">
+        </label>
+
+        <label>
+          Rom/kategori
+          <select id="category">
+            <option>Hele huset</option>
+            <option>Stue</option>
+            <option>Kjøkken</option>
+            <option>Bad</option>
+            <option>Soverom</option>
+            <option>Hage</option>
+          </select>
+        </label>
+
+        <label>
+          Tildel oppgave
+          <input id="assignee" type="text" placeholder="Navn">
+        </label>
+
+        <label>
+          Frist (valgfritt)
+          <input id="due" type="date">
+        </label>
+
+        <button type="submit">Legg til</button>
+        <p id="formError" class="error" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- Liste over aktive oppgaver (fylles senere) -->
+    <section class="card">
+      <h2>Aktive oppgaver</h2>
+      <ul id="taskList" class="list"></ul>
+      <p id="emptyState">Ingen oppgaver enda.</p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Alt i orden</p>
+  </footer>
+
+  <!-- JS kommer i neste steg -->
+</body>
+</html>

@@ -1,3 +1,8 @@
+/* =========================
+   GRUNNOPPSETT
+   ========================= */
+* { box-sizing: border-box; }
+html { font-size: 16px; }
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -5,61 +10,62 @@ body {
   background: #f9f9f9;
   color: #333;
 }
+img, video { max-width: 100%; height: auto; display: block; }
 
-header {
-  background: #2e8b57;
-  color: white;
-  padding: 1rem;
+/* =========================
+   FARGER/VARIABLER
+   ========================= */
+:root {
+  --brand: #2e8b57;
+  --brand-dark: #256b45;
+  --text: #333;
+  --muted: #475569;
+  --card: #fff;
+  --shadow: 0 1px 4px rgba(0,0,0,.08);
 }
 
+/* =========================
+   HEADER/NAV
+   ========================= */
+header {
+  background: var(--brand);
+  color: #fff;
+  padding: 1rem;
+}
 nav a {
-  color: white;
+  color: #fff;
   margin-right: 1rem;
   text-decoration: none;
 }
+nav a:hover { text-decoration: underline; }
+nav a[aria-current="page"] { text-decoration: underline; }
 
-nav a:hover {
-  text-decoration: underline;
+/* =========================
+   LAYOUT/SEKSJONER
+   ========================= */
+main { padding: 1.5rem; }
+section { margin-bottom: 2rem; }
+footer { padding: 1rem 1.5rem; color: var(--muted); }
+@media (min-width: 768px) {
+  main { max-width: 900px; margin: 0 auto; }
 }
 
-main {
-  padding: 1.5rem;
-}
-
-section {
-  margin-bottom: 2rem;
-}
-
-button, .btn {
-  background: #2e8b57;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-button:hover, .btn:hover {
-  background: #256b45;
-}
-
-/* Hjem-spesifikt (bygg på eksisterende stil) */
+/* =========================
+   HJEM-SPESIFIKT
+   ========================= */
 .intro {
   text-align: center;
   background: #e7f5f0;
   padding: 2rem 1rem;
   border-radius: 6px;
 }
-
 #weather {
-  background: #fff;
+  background: var(--card);
   padding: 1.25rem;
   border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+  box-shadow: var(--shadow);
 }
-
 .shortcuts { text-align: center; }
-
 .buttons {
   display: flex;
   flex-wrap: wrap;
@@ -68,7 +74,71 @@ button:hover, .btn:hover {
   margin-top: 1rem;
 }
 
-/* Responsivt “grid”-oppsett på større skjermer */
-@media (min-width: 768px) {
-  main { max-width: 900px; margin: 0 auto; }
+/* =========================
+   KNAPPER
+   ========================= */
+button, .btn {
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.2s;
 }
+button:hover, .btn:hover { background: var(--brand-dark); }
+button:disabled { opacity: .6; cursor: not-allowed; }
+
+/* =========================
+   KORT/LISTER
+   ========================= */
+.card {
+  background: var(--card);
+  padding: 1.25rem;
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+}
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: .5rem;
+}
+.list li {
+  background: #fff;
+  border: 1px solid #e7e7e7;
+  border-radius: 6px;
+  padding: .6rem .8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
+}
+.meta { color: var(--muted); font-size: .9rem; }
+
+/* =========================
+   SKJEMA
+   ========================= */
+form { display: grid; gap: .75rem; }
+label { display: grid; gap: .25rem; }
+input, select, textarea, button {
+  font: inherit;
+  padding: .6rem .8rem;
+  border-radius: 6px;
+}
+input, select, textarea {
+  border: 1px solid #dcdcdc;
+  background: #fff;
+}
+input:focus, select:focus, textarea:focus, a:focus, button:focus {
+  outline: 2px solid #94d3ac;
+  outline-offset: 2px;
+}
+
+/* =========================
+   MELDINGER
+   ========================= */
+#error, .error { color: #b00020; margin: 0; }
+#emptyState, #emptyDone { color: var(--muted); text-align: center; }
+
