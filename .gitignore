@@ -1,0 +1,6 @@
+# Hindre at API-nøkler og lokale filer blir lastet opp til GitHub
+scripts/config.js
+
+# Ignorer midlertidige systemfiler og mapper
+node_modules/
+.DS_Store
