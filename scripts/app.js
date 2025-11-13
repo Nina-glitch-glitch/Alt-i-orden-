@@ -19,37 +19,38 @@
 })();
 
 /* ===========================================
-   Demo: vis status i #weather-info uten ekte API
-   - Viser “demo-data” hvis nøkkel mangler
-   - Ellers sier den at alt er klart for ekte kall
+   Demo + init på siden
+   - Oppdaterer vær-boksen
+   - Kjører test mot OpenAI og OpenWeather
 =========================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const weatherBox = document.getElementById("weather-info");
-  if (!weatherBox) return; // siden kan mangle seksjonen på andre sider
 
-  weatherBox.textContent = "Tester kobling...";
+  if (weatherBox) {
+    weatherBox.textContent = "Tester kobling...";
 
-  // Simuler en liten forsinkelse (som et ordentlig nettverkskall)
-  new Promise((resolve) => setTimeout(resolve, 600))
-    .then(() => {
-      const key = window.CONFIG && window.CONFIG.OPENWEATHER_API_KEY;
-      const keyLooksUnset =
-        !key || String(key).includes("DIN_OPENWEATHER_API_KEY_HER");
+    // Simuler en liten forsinkelse (som et ordentlig nettverkskall)
+    new Promise((resolve) => setTimeout(resolve, 600))
+      .then(() => {
+        const key = window.CONFIG && window.CONFIG.OPENWEATHER_API_KEY;
+        const keyLooksUnset = !key;
 
-      if (keyLooksUnset) {
-        weatherBox.textContent =
-          "API-nøkkel ikke satt ennå. Viser demo: 12°C, lett skyet.";
-      } else {
-        weatherBox.textContent = "Klar for ekte værkall – nøkkel funnet.";
-      }
-    })
-    .catch((err) => {
-      weatherBox.textContent = "Noe gikk galt i testen.";
-      console.error(err);
-    });
+        if (keyLooksUnset) {
+          weatherBox.textContent =
+            "API-nøkkel ikke satt ennå. Viser demo: 12°C, lett skyet.";
+        } else {
+          weatherBox.textContent = "Klar for ekte værkall – nøkkel funnet.";
+        }
+      })
+      .catch((err) => {
+        weatherBox.textContent = "Noe gikk galt i testen.";
+        console.error(err);
+      });
+  }
 
-  // 👉 NY LINJE: kjør OpenAI-test når siden er lastet
+  // 👉 Kjør testene når siden er lastet
   testOpenAI();
+  testWeather();
 });
 
 /* ===========================================
@@ -99,5 +100,39 @@ async function testOpenAI() {
     console.log("Tekstsvar fra OpenAI:", reply);
   } catch (err) {
     console.error("Feil i OpenAI-test:", err);
+  }
+}
+
+/* ===========================================
+   Test OpenWeather-kall
+   - Bruker nøkkelen fra window.CONFIG.OPENWEATHER_API_KEY
+   - Logger svaret i Console
+=========================================== */
+async function testWeather() {
+  const key = window.CONFIG && window.CONFIG.OPENWEATHER_API_KEY;
+  const city = "Oslo";
+
+  if (!key) {
+    console.error("Ingen OpenWeather-nøkkel funnet.");
+    return;
+  }
+
+  console.log("Sender testkall til OpenWeather...");
+
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    console.log("Svar fra OpenWeather (rådata):", data);
+
+    if (data.main && typeof data.main.temp !== "undefined") {
+      console.log(`Temperatur i ${city}:`, data.main.temp + "°C");
+    } else {
+      console.log("Kunne ikke hente temperatur. Feil:", data);
+    }
+  } catch (err) {
+    console.error("Feil ved henting fra OpenWeather:", err);
   }
 }

@@ -73,28 +73,35 @@ Målet er å lage et helhetlig, responsivt og forståelig grensesnitt som lar br
 **Hvorfor:**
 - Ensartet kodebase gjør det lettere å utvikle videre og teste funksjoner.
 - Et felles stilark og ryddig HTML legger grunnlag for responsivitet og JS-funksjoner.
-### 13. november – API-tilkobling og OpenAI-integrasjon
+
+
+---
+
+
+### 13. november – Fullført API-integrasjon (OpenWeather + OpenAI)
 
 **Gjort:**
-- Opprettet `config.js` og lagt den i `.gitignore` for trygg håndtering av API-nøkler.
-- Verifisert at `window.CONFIG` lastes riktig ved oppstart.
-- Lagt inn init-sjekk som logger status for `hasOpenAI` og `hasOpenWeather`.
-- Testet at OpenAI-nøkkelen lastes korrekt (Console viser `true`).
-- Implementert en fungerende testfunksjon (`testOpenAI()`) som sender et ekte API-kall.
-- Mottatt svar fra OpenAI-modellen `gpt-4o-mini` (Console viser “Tekstsvar fra OpenAI: Flott!”).
-- Ryddet i `app.js` og sikret at API-kall kjører trygt ved `DOMContentLoaded`.
+- Lagt inn gyldig OpenWeather API-nøkkel i `config.js`.
+- Rettet syntaksfeil i `config.js` (manglende komma → nøkler ble ikke lastet).
+- Verifisert at både OpenAI og OpenWeather lastes via `window.CONFIG`.
+- Testet og bekreftet at begge API-er fungerer:
+  - **OpenAI:** Fikk vellykket respons fra modellen `gpt-4o-mini` (“Bra!”).
+  - **OpenWeather:** Fikk korrekt temperatur for Oslo (f.eks. 4.58°C).
+- Implementert og aktivert funksjonene `testOpenAI()` og `testWeather()`.
+- Sikret at API-kall først kjøres etter `DOMContentLoaded`.
+- Bekreftet endelig at `.gitignore` skjuler `config.js` fullstendig fra GitHub.
 
 **Hvorfor:**
-- Trygg håndtering av API-nøkler er et krav i eksamensoppgaven.
-- Funksjonell OpenAI-integrasjon er en kjerne-del av prosjektet.
-- Sjekk av config-oppsett gjør videre arbeid med API-er stabilt.
+- API-integrasjon er en sentral del av eksamenskravet.
+- Nå er grunnlaget lagt for både chatbot-funksjonen og dynamisk værvisning på forsiden.
+- Trygg håndtering av nøklene gjør prosjektet profesjonelt og sikkerhetsmessig korrekt.
 
 **Lært i dag:**
-- Hvordan konfigurere API-nøkler lokalt på en sikker måte.
-- Hvordan verifisere at config-filer lastes korrekt i JavaScript.
-- Hvordan gjøre et ekte OpenAI API-kall i nettleseren.
-- Hvordan hente ut datapunkter fra JSON-svaret (`choices → message → content`).
-- Hvordan Debug Console viser feil og hvordan man retter dem.
+- Hvordan små syntaksfeil (manglende komma) kan stoppe hele config-oppsettet.
+- Hvordan debugge manglende API-nøkler ved hjelp av `console.log` og tidlig init-sjekk.
+- Hvordan lage enkle, trygge test-funksjoner for å verifisere API-integrasjon.
+- Forskjellen på lokal konfigurasjon (`config.js`) og distribuerbart eksempel (`config.example.js`).
+- Hvordan API-kall returnerer JSON, og hvordan man henter ut temperatur og tekstsvar.
 
 
 ## 3. Teknisk oversikt
@@ -120,7 +127,7 @@ Målet er å lage et helhetlig, responsivt og forståelig grensesnitt som lar br
 
 ---
 
-## 5. To-do-liste (oppdatert 12. november)
+## 5. To-do-liste (oppdatert 13. november)
 
 | Status | Oppgave |
 |:------:|:--------|
@@ -136,12 +143,14 @@ Målet er å lage et helhetlig, responsivt og forståelig grensesnitt som lar br
 | [x] | Dokumentere fremdrift etter hver arbeidsøkt i README |
 | [x] | Sette opp `config.js` og `.gitignore` for API-nøkler |
 | [x] | Teste OpenAI API og hente første svar |
+| [x] | Teste OpenWeather API og hente ekte temperatur |
 | [~] | Implementere chatbot (OpenAI API) tilgjengelig på alle sider |
-| [ ] | Legge inn vær-API (OpenWeather) på Hjem-siden |
+| [ ] | Vise ekte værdata dynamisk på forsiden |
 | [ ] | Legge til funksjon for å markere oppgaver som fullført |
 | [ ] | Lagre oppgaver i localStorage slik at de ikke forsvinner ved oppdatering |
 | [ ] | Legge til enkel validering på skjema (tomt felt, frist osv.) |
 | [ ] | Legge til forslag basert på vær (eks. “Perfekt dag for å vaske vinduer”) |
+
 
 ---
 
