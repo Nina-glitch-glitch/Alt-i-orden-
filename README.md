@@ -90,6 +90,9 @@ Målet er å lage et helhetlig, responsivt og forståelig grensesnitt som lar br
 - Implementert og aktivert funksjonene `testOpenAI()` og `testWeather()`.
 - Sikret at API-kall først kjøres etter `DOMContentLoaded`.
 - Bekreftet endelig at `.gitignore` skjuler `config.js` fullstendig fra GitHub.
+- Oppdatert `testWeather()` til å vise ekte værdata i UI (`#weather-info`) på forsiden.
+- Henter nå temperatur og beskrivelse for Oslo (f.eks. "Oslo: 5°C, overcast clouds").
+
 
 **Hvorfor:**
 - API-integrasjon er en sentral del av eksamenskravet.
@@ -145,7 +148,7 @@ Målet er å lage et helhetlig, responsivt og forståelig grensesnitt som lar br
 | [x] | Teste OpenAI API og hente første svar |
 | [x] | Teste OpenWeather API og hente ekte temperatur |
 | [~] | Implementere chatbot (OpenAI API) tilgjengelig på alle sider |
-| [ ] | Vise ekte værdata dynamisk på forsiden |
+| [x] | Vise ekte værdata dynamisk på forsiden |
 | [ ] | Legge til funksjon for å markere oppgaver som fullført |
 | [ ] | Lagre oppgaver i localStorage slik at de ikke forsvinner ved oppdatering |
 | [ ] | Legge til enkel validering på skjema (tomt felt, frist osv.) |

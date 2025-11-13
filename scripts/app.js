@@ -27,28 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const weatherBox = document.getElementById("weather-info");
 
   if (weatherBox) {
-    weatherBox.textContent = "Tester kobling...";
-
-    // Simuler en liten forsinkelse (som et ordentlig nettverkskall)
-    new Promise((resolve) => setTimeout(resolve, 600))
-      .then(() => {
-        const key = window.CONFIG && window.CONFIG.OPENWEATHER_API_KEY;
-        const keyLooksUnset = !key;
-
-        if (keyLooksUnset) {
-          weatherBox.textContent =
-            "API-nøkkel ikke satt ennå. Viser demo: 12°C, lett skyet.";
-        } else {
-          weatherBox.textContent = "Klar for ekte værkall – nøkkel funnet.";
-        }
-      })
-      .catch((err) => {
-        weatherBox.textContent = "Noe gikk galt i testen.";
-        console.error(err);
-      });
+    weatherBox.textContent = "Henter værdata for Oslo...";
   }
 
-  // 👉 Kjør testene når siden er lastet
   testOpenAI();
   testWeather();
 });
@@ -111,10 +92,19 @@ async function testOpenAI() {
 async function testWeather() {
   const key = window.CONFIG && window.CONFIG.OPENWEATHER_API_KEY;
   const city = "Oslo";
+  const weatherBox = document.getElementById("weather-info");
 
   if (!key) {
     console.error("Ingen OpenWeather-nøkkel funnet.");
+    if (weatherBox) {
+      weatherBox.textContent =
+        "Ingen værnøkkel satt opp ennå. Viser ikke ekte vær.";
+    }
     return;
+  }
+
+  if (weatherBox) {
+    weatherBox.textContent = "Henter værdata...";
   }
 
   console.log("Sender testkall til OpenWeather...");
@@ -127,12 +117,21 @@ async function testWeather() {
 
     console.log("Svar fra OpenWeather (rådata):", data);
 
-    if (data.main && typeof data.main.temp !== "undefined") {
-      console.log(`Temperatur i ${city}:`, data.main.temp + "°C");
-    } else {
-      console.log("Kunne ikke hente temperatur. Feil:", data);
+    if (weatherBox) {
+      if (response.ok && data.main && data.weather && data.weather[0]) {
+        const temp = Math.round(data.main.temp);
+        const desc = data.weather[0].description; // f.eks. "light rain"
+        weatherBox.textContent = `${city}: ${temp}°C, ${desc}`;
+      } else {
+        weatherBox.textContent =
+          "Kunne ikke lese værdata akkurat nå.";
+      }
     }
   } catch (err) {
     console.error("Feil ved henting fra OpenWeather:", err);
+    if (weatherBox) {
+      weatherBox.textContent =
+        "Klarte ikke å hente vær akkurat nå.";
+    }
   }
 }
