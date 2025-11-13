@@ -73,8 +73,29 @@ Målet er å lage et helhetlig, responsivt og forståelig grensesnitt som lar br
 **Hvorfor:**
 - Ensartet kodebase gjør det lettere å utvikle videre og teste funksjoner.
 - Et felles stilark og ryddig HTML legger grunnlag for responsivitet og JS-funksjoner.
+### 13. november – API-tilkobling og OpenAI-integrasjon
 
----
+**Gjort:**
+- Opprettet `config.js` og lagt den i `.gitignore` for trygg håndtering av API-nøkler.
+- Verifisert at `window.CONFIG` lastes riktig ved oppstart.
+- Lagt inn init-sjekk som logger status for `hasOpenAI` og `hasOpenWeather`.
+- Testet at OpenAI-nøkkelen lastes korrekt (Console viser `true`).
+- Implementert en fungerende testfunksjon (`testOpenAI()`) som sender et ekte API-kall.
+- Mottatt svar fra OpenAI-modellen `gpt-4o-mini` (Console viser “Tekstsvar fra OpenAI: Flott!”).
+- Ryddet i `app.js` og sikret at API-kall kjører trygt ved `DOMContentLoaded`.
+
+**Hvorfor:**
+- Trygg håndtering av API-nøkler er et krav i eksamensoppgaven.
+- Funksjonell OpenAI-integrasjon er en kjerne-del av prosjektet.
+- Sjekk av config-oppsett gjør videre arbeid med API-er stabilt.
+
+**Lært i dag:**
+- Hvordan konfigurere API-nøkler lokalt på en sikker måte.
+- Hvordan verifisere at config-filer lastes korrekt i JavaScript.
+- Hvordan gjøre et ekte OpenAI API-kall i nettleseren.
+- Hvordan hente ut datapunkter fra JSON-svaret (`choices → message → content`).
+- Hvordan Debug Console viser feil og hvordan man retter dem.
+
 
 ## 3. Teknisk oversikt
 
@@ -112,12 +133,14 @@ Målet er å lage et helhetlig, responsivt og forståelig grensesnitt som lar br
 | [x] | Lære og utføre Git-kommandoer (add, commit, push) |
 | [~] | Forbedre felles CSS og struktur på tvers av sider |
 | [~] | Teste og justere responsivitet (mobil, nettbrett, PC) |
-| [~] | Dokumentere fremdrift etter hver arbeidsøkt i README |
+| [x] | Dokumentere fremdrift etter hver arbeidsøkt i README |
+| [x] | Sette opp `config.js` og `.gitignore` for API-nøkler |
+| [x] | Teste OpenAI API og hente første svar |
+| [~] | Implementere chatbot (OpenAI API) tilgjengelig på alle sider |
 | [ ] | Legge inn vær-API (OpenWeather) på Hjem-siden |
 | [ ] | Legge til funksjon for å markere oppgaver som fullført |
 | [ ] | Lagre oppgaver i localStorage slik at de ikke forsvinner ved oppdatering |
 | [ ] | Legge til enkel validering på skjema (tomt felt, frist osv.) |
-| [ ] | Implementere chatbot (OpenAI API) tilgjengelig på alle sider |
 | [ ] | Legge til forslag basert på vær (eks. “Perfekt dag for å vaske vinduer”) |
 
 ---
