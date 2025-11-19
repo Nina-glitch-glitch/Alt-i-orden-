@@ -35,13 +35,25 @@
 
     <!-- Værseksjon -->
     <!-- vær-API integreres og gir forslag -->
-    <section id="weather">
-      <h3>Dagens vær</h3>
-      <div id="weather-info">Laster værdata...</div>
-      <!-- Plass til daglig forslag senere -->
-      <p id="weather-tip"></p>
-    </section>
+ <section id="weather">
+  <h3>Dagens vær</h3>
 
+  <!-- Lite skjema for å velge by -->
+  <div class="weather-controls">
+    <label for="weather-city">Velg sted:</label>
+    <input
+      type="text"
+      id="weather-city"
+      placeholder="F.eks. Oslo, Hamar, Brumunddal"
+    />
+    <button type="button" id="weather-button">Oppdater vær</button>
+  </div>
+
+  <div id="weather-info">Laster værdata...</div>
+
+  <!-- Plass til daglig forslag senere -->
+  <p id="weather-tip"></p>
+</section>
     <!--  Snarveier -->
     <!-- Knapper som leder til de andre sidene -->
     <section class="shortcuts">

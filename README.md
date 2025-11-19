@@ -106,6 +106,23 @@ Målet er å lage et helhetlig, responsivt og forståelig grensesnitt som lar br
 - Forskjellen på lokal konfigurasjon (`config.js`) og distribuerbart eksempel (`config.example.js`).
 - Hvordan API-kall returnerer JSON, og hvordan man henter ut temperatur og tekstsvar.
 
+### 14. november – Vær-API med dynamisk byvalg
+
+**Gjort:**
+- Utvidet værseksjonen på forsiden (`index.html`) med input-felt og knapp for valg av sted.
+- Oppdatert `app.js` slik at værkallet ikke lenger er låst til Oslo, men bruker byen brukeren skriver inn.
+- Implementert støtte for både klikk på knapp og Enter-tast i input-feltet.
+- Testet OpenWeather-respons og bekreftet at temperatur og værbeskrivelse oppdateres direkte i `#weather-info`.
+
+**Hvorfor:**
+- Øker nytteverdien ved at appen nå fungerer for flere lokasjoner, ikke bare Oslo.
+- Gir brukeren mer kontroll på informasjonen selv — i stedet for GPS, som krever mer avansert kode og personvern-hensyn.
+
+**Lært i dag:**
+- Hvordan hente og bruke data dynamisk fra UI-input.
+- Hvordan trigge API-kall både via knapp og tastatur (Enter-listener).
+- Hvordan gjøre DOM-oppdatering trygg (kun hvis elementet finnes).
+
 
 ## 3. Teknisk oversikt
 

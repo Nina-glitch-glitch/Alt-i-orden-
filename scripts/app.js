@@ -18,21 +18,45 @@
   console.log("Har vi OpenAI-nøkkel?", Boolean(window.CONFIG.OPENAI_API_KEY));
 })();
 
+
 /* ===========================================
    Demo + init på siden
-   - Oppdaterer vær-boksen
-   - Kjører test mot OpenAI og OpenWeather
+   - Kjører værkall og OpenAI-test når siden lastes
+   - Knytter input + knapp til testWeather(city)
 =========================================== */
 document.addEventListener("DOMContentLoaded", () => {
-  const weatherBox = document.getElementById("weather-info");
+  const cityInput = document.getElementById("weather-city");
+  const cityButton = document.getElementById("weather-button");
 
-  if (weatherBox) {
-    weatherBox.textContent = "Henter værdata for Oslo...";
+  // 1) Første kall: standard-by (Oslo)
+  testWeather(); // bruker default "Oslo"
+
+  // 2) Koble knapp til nytt værkall
+  if (cityButton && cityInput) {
+    cityButton.addEventListener("click", () => {
+      const city = cityInput.value.trim();
+
+      if (city) {
+        // brukeren har skrevet by
+        testWeather(city);
+      } else {
+        // tomt felt → bruk standard
+        testWeather();
+      }
+    });
+
+    // Bonus: Enter i input-feltet fungerer som å trykke på knappen
+    cityInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        cityButton.click();
+      }
+    });
   }
 
+  // 3) Kjør OpenAI-test som før
   testOpenAI();
-  testWeather();
 });
+
 
 /* ===========================================
    Test OpenAI-kall
@@ -87,11 +111,10 @@ async function testOpenAI() {
 /* ===========================================
    Test OpenWeather-kall
    - Bruker nøkkelen fra window.CONFIG.OPENWEATHER_API_KEY
-   - Logger svaret i Console
+   - Oppdaterer #weather-info på siden
 =========================================== */
-async function testWeather() {
+async function testWeather(city = "Oslo") {
   const key = window.CONFIG && window.CONFIG.OPENWEATHER_API_KEY;
-  const city = "Oslo";
   const weatherBox = document.getElementById("weather-info");
 
   if (!key) {
@@ -104,12 +127,14 @@ async function testWeather() {
   }
 
   if (weatherBox) {
-    weatherBox.textContent = "Henter værdata...";
+    weatherBox.textContent = `Henter værdata for ${city}...`;
   }
 
-  console.log("Sender testkall til OpenWeather...");
+  console.log(`Sender værkall til OpenWeather for ${city}...`);
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
+    city
+  )}&units=metric&appid=${key}`;
 
   try {
     const response = await fetch(url);
@@ -117,15 +142,30 @@ async function testWeather() {
 
     console.log("Svar fra OpenWeather (rådata):", data);
 
-    if (weatherBox) {
-      if (response.ok && data.main && data.weather && data.weather[0]) {
-        const temp = Math.round(data.main.temp);
-        const desc = data.weather[0].description; // f.eks. "light rain"
-        weatherBox.textContent = `${city}: ${temp}°C, ${desc}`;
-      } else {
+    if (!response.ok) {
+      console.error("Feil fra OpenWeather:", data);
+      if (weatherBox) {
         weatherBox.textContent =
-          "Kunne ikke lese værdata akkurat nå.";
+          "Kunne ikke hente værdata akkurat nå.";
       }
+      return;
+    }
+
+    if (
+      weatherBox &&
+      data.main &&
+      typeof data.main.temp !== "undefined" &&
+      data.weather &&
+      data.weather[0]
+    ) {
+      const temp = Math.round(data.main.temp);
+      const desc = data.weather[0].description;
+      const cityName = data.name || city;
+
+      weatherBox.textContent = `${cityName}: ${temp}°C, ${desc}`;
+    } else if (weatherBox) {
+      weatherBox.textContent =
+        "Kunne ikke lese værdata akkurat nå.";
     }
   } catch (err) {
     console.error("Feil ved henting fra OpenWeather:", err);
