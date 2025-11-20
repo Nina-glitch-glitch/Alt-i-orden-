@@ -1,0 +1,93 @@
+// tasks.js
+// Håndterer skjema og liste for oppgaver (fast husarbeidsliste)
+
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. Finn HTML-elementene
+  const form = document.getElementById("taskForm");
+  const roomSelect = document.getElementById("category");
+  const titleInput = document.getElementById("title");
+  const errorBox = document.getElementById("formError");
+
+  const taskList = document.getElementById("taskList");
+  const emptyState = document.getElementById("emptyState");
+
+  // 2. Last oppgaver fra localStorage
+  let tasks = TaskStorage.load(); // fra storage.js
+
+  renderTasks();
+
+  // 3. Når brukeren trykker "Send til aktive oppgaver"
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    errorBox.textContent = "";
+
+    const title = titleInput.value.trim();
+    const room = roomSelect.value;
+
+    if (!title) {
+      errorBox.textContent = "Skriv inn en oppgave.";
+      titleInput.focus();
+      return;
+    }
+
+    // Ny fast oppgave
+    const newTask = {
+      id: Date.now(),
+      title: title,
+      room: room,
+      done: false, // brukes senere når vi markerer utført
+      createdAt: new Date().toISOString(),
+    };
+
+    tasks.push(newTask);
+    TaskStorage.save(tasks);
+    renderTasks();
+
+    form.reset();
+    roomSelect.value = "Hele huset";
+  });
+
+  // 4. Tegn opp liste over aktive oppgaver
+  function renderTasks() {
+    taskList.innerHTML = "";
+
+    if (!tasks.length) {
+      emptyState.style.display = "block";
+      return;
+    }
+
+    emptyState.style.display = "none";
+
+    tasks.forEach((task) => {
+      const li = document.createElement("li");
+      li.classList.add("task-item");
+      if (task.done) {
+        li.classList.add("task-done");
+      }
+
+      // Tekst: "Kjøkken: Støvsuge"
+      const text = document.createElement("span");
+      text.classList.add("task-title");
+      text.textContent = `${task.room}: ${task.title}`;
+
+      // Knapp for senere (markere utført)
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.classList.add("task-toggle");
+      btn.textContent = task.done ? "Utført" : "Gjør i dag";
+
+      // Foreløpig bare toggler vi done-statusen
+      btn.addEventListener("click", () => {
+        task.done = !task.done;
+        TaskStorage.save(tasks);
+        renderTasks();
+      });
+
+      li.appendChild(text);
+      li.appendChild(btn);
+      taskList.appendChild(li);
+    });
+  }
+});
+
+

@@ -123,6 +123,17 @@ Målet er å lage et helhetlig, responsivt og forståelig grensesnitt som lar br
 - Hvordan trigge API-kall både via knapp og tastatur (Enter-listener).
 - Hvordan gjøre DOM-oppdatering trygg (kun hvis elementet finnes).
 
+### 20. november - Endret plan
+I den første versjonen måtte brukeren skrive inn tittel, tildelt person og dato hver gang en oppgave skulle legges inn. Etter evaluering innså jeg at dette ga for mye friksjon/dårlig flyt, og ikke samsvarte med målet for appen – å gjøre husarbeid mer oversiktlig og enkelt.
+
+Derfor ble funksjonen endret til:
+
+• brukeren legger inn en oppgave kun én gang
+• oppgaven blir sendt til "Aktive oppgaver" og ligger der fast
+• en oppgave kan deretter utføres flere ganger uten å måtte opprettes på nytt
+
+Denne endringen gjør arbeidsflyten raskere og mer brukervennlig, særlig for gjentagende oppgaver som finnes i alle hus (f.eks. støvsuge, gå ut med søppel, vaske bad, mate dyr). Beslutningen ble tatt etter testing og refleksjon rundt hva som faktisk gir verdi for brukeren i hverdagen.
+
 
 ## 3. Teknisk oversikt
 
