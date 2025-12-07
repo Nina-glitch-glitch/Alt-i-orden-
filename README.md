@@ -1,187 +1,196 @@
 # Alt-i-orden
 
 En enkel og brukervennlig webapp for å organisere husarbeid i en husholdning.  
-Brukeren skal kunne legge til oppgaver, markere dem som fullført, se en historikk,  
-og hente inspirasjon via API-er (for eksempel værmelding eller motiverende sitater).
+Brukeren kan legge til oppgaver, markere dem som fullført, se en historikk,  
+og få hjelp via både værdata og en AI-basert chatbot.
+
+Løsningen er en ren frontend-applikasjon (HTML, CSS, JavaScript) uten backend.
 
 ---
 
 ## 1. Formål og prosjektbeskrivelse
 
-Prosjektet er en eksamensoppgave i frontend-utvikling med fokus på brukervennlighet, strukturert kode,  
-og integrasjon av API-er. Løsningen skal kjøres i nettleseren (client-side) uten backend.
+Dette prosjektet er utviklet som en eksamensoppgave i *Frontend Essentials* ved Oslo Nye Høyskole.  
+Kravene for prosjektet inkluderer:
 
-Målet er å lage et helhetlig, responsivt og forståelig grensesnitt som lar brukeren:
-- Få oversikt over husarbeid
-- Legge til nye oppgaver med frist og tildeling
-- Se historikk over fullførte oppgaver
-- Motta relevant informasjon fra et vær-API og en AI-chatbot
+- Minst tre HTML-sider  
+- Integrasjon av et tredjeparts-API  
+- Integrasjon av OpenAI API  
+- Semantisk, responsiv og brukervennlig frontend  
+- Korrekt bruk av Git og GitHub  
+- Dokumentasjon av utviklingsprosessen  
+
+**Alt i orden** er en husholdningsapp som gir brukeren:
+
+- Oversikt over husarbeid  
+- Mulighet til å registrere nye oppgaver  
+- Innblikk i fullførte oppgaver  
+- Vær-basert husarbeidstips via OpenAI  
+- En egen AI-chatbot (“Vaskebot”) for spørsmål og råd  
 
 ---
 
 ## 2. Fremdriftslogg
 
 ### 7. november – Oppstart og planlegging
-
 **Gjort:**
-- Gått gjennom eksamenskrav og planlagt leveranse.
-- Bestemt at løsningen skal være en intern husholdningsapp (fokus på funksjon fremfor skalering).
-- Laget enkle skisser og struktur i Figma.
-- Installert Git og satt opp GitHub og Git Bash.
-- Klonet repo og åpnet prosjektet i Visual Studio Code.
-- Laget prosjektmappe og struktur:
-  - index.html  
-  - tasks.html  
-  - done.html  
-  - styles/ (for CSS)  
-  - scripts/ (for JavaScript)
-- Aktivert Live Server for forhåndsvisning.
-- Lært grunnleggende bruk av git add, commit og push.
+- Gått gjennom eksamenskrav og laget plan.
+- Designet enkel struktur i Figma.
+- Satt opp prosjektmappe, GitHub-repo og Live Server.
+- Opprettet filer: `index.html`, `tasks.html`, `done.html`, `styles/`, `scripts/`.
+- Lært Git-workflow (add, commit, push).
 
-**Læring og utfordringer:**
-- Forstått forskjellen mellom Git (lokalt) og GitHub (sky).
-- Måtte finne ut hvordan Live Server og Git fungerer sammen.
-- Usikkerhet rundt mappestruktur, men fikk etablert en logisk løsning.
+**Lært:**
+- Forskjellen på Git (lokalt) vs GitHub (sky).
+- Grunnstruktur for frontend-prosjekter.
 
 ---
 
 ### 10. november – Grunnstruktur og visuell oppbygging
-
 **Gjort:**
-- Bygget første versjon av forside (`index.html`) og lagt inn navigasjon mellom sidene.
-- Opprettet felles stilark (`base.css`) og strukturert kode for gjenbruk.
-- Opprettet seksjoner for introduksjon, vær, og snarveier.
-- Lagt til hover-effekter, farger og tekstjusteringer.
-- Testet “Go Live” for å bekrefte koblinger mellom HTML og CSS.
-- Lært å bruke Git effektivt med staging, commits og push til GitHub.
+- Laget første versjon av forsiden med navigasjon.
+- Opprettet `base.css` og strukturert felles styling.
+- Implementert seksjoner for intro, vær og snarveier.
+- Testet kobling mellom HTML og CSS.
 
 **Hvorfor:**
-- Dette gir en ryddig visuell base og en god mal for de andre sidene.
-- Klargjør for API-integrasjon (vær og chatbot) senere.
+- For å sikre en konsistent og responsiv layout.
 
 ---
 
 ### 12. november – Strukturkontroll og konsistens
-
 **Gjort:**
-- Gått gjennom alle HTML-filer for å sikre riktig struktur og lik oppbygging.
-- Kontrollert at alle sider peker til `styles/base.css`.
-- Fjernet unødvendige elementer og ryddet i HTML.
-- Lagt til tydelige kommentarer og seksjonsoverskrifter i koden.
-- Oppdatert README for å reflektere progresjon og plan videre.
+- Ryddet HTML og fjernet duplikater.
+- Sikret semantikk (h1–h3).
+- La til seksjonskommentarer.
+- Oppdatert README.
 
 **Hvorfor:**
-- Ensartet kodebase gjør det lettere å utvikle videre og teste funksjoner.
-- Et felles stilark og ryddig HTML legger grunnlag for responsivitet og JS-funksjoner.
-
+- God struktur gir enklere videreutvikling.
 
 ---
 
-
-### 13. november – Fullført API-integrasjon (OpenWeather + OpenAI)
-
+### 13. november – API-integrasjon (OpenWeather + OpenAI)
 **Gjort:**
-- Lagt inn gyldig OpenWeather API-nøkkel i `config.js`.
-- Rettet syntaksfeil i `config.js` (manglende komma → nøkler ble ikke lastet).
-- Verifisert at både OpenAI og OpenWeather lastes via `window.CONFIG`.
-- Testet og bekreftet at begge API-er fungerer:
-  - **OpenAI:** Fikk vellykket respons fra modellen `gpt-4o-mini` (“Bra!”).
-  - **OpenWeather:** Fikk korrekt temperatur for Oslo (f.eks. 4.58°C).
-- Implementert og aktivert funksjonene `testOpenAI()` og `testWeather()`.
-- Sikret at API-kall først kjøres etter `DOMContentLoaded`.
-- Bekreftet endelig at `.gitignore` skjuler `config.js` fullstendig fra GitHub.
-- Oppdatert `testWeather()` til å vise ekte værdata i UI (`#weather-info`) på forsiden.
-- Henter nå temperatur og beskrivelse for Oslo (f.eks. "Oslo: 5°C, overcast clouds").
+- Opprettet `config.js` og `.gitignore`.
+- Integrert OpenWeather API (først statisk, senere dynamisk).
+- Integrert OpenAI API og testet GPT-4o-mini.
+- Implementert `testWeather()` og `testOpenAI()`.
+- La inn feilhåndtering og logging.
+- Viste ekte værdata i UI.
 
+**Lært:**
+- Hvordan API-kall fungerer.
+- Hvordan JSON-data håndteres.
+
+---
+
+### 14. november – Dynamisk byvalg for vær
+**Gjort:**
+- La til input-felt for fritt valg av sted.
+- Oppdatert værfunksjon for dynamiske kall.
+- La til Enter-event og inputvalidering.
 
 **Hvorfor:**
-- API-integrasjon er en sentral del av eksamenskravet.
-- Nå er grunnlaget lagt for både chatbot-funksjonen og dynamisk værvisning på forsiden.
-- Trygg håndtering av nøklene gjør prosjektet profesjonelt og sikkerhetsmessig korrekt.
+- Gjør værseksjonen mer nyttig og fleksibel.
 
-**Lært i dag:**
-- Hvordan små syntaksfeil (manglende komma) kan stoppe hele config-oppsettet.
-- Hvordan debugge manglende API-nøkler ved hjelp av `console.log` og tidlig init-sjekk.
-- Hvordan lage enkle, trygge test-funksjoner for å verifisere API-integrasjon.
-- Forskjellen på lokal konfigurasjon (`config.js`) og distribuerbart eksempel (`config.example.js`).
-- Hvordan API-kall returnerer JSON, og hvordan man henter ut temperatur og tekstsvar.
+---
 
-### 14. november – Vær-API med dynamisk byvalg
-
+### 20. november – Forbedret oppgaveflyt
 **Gjort:**
-- Utvidet værseksjonen på forsiden (`index.html`) med input-felt og knapp for valg av sted.
-- Oppdatert `app.js` slik at værkallet ikke lenger er låst til Oslo, men bruker byen brukeren skriver inn.
-- Implementert støtte for både klikk på knapp og Enter-tast i input-feltet.
-- Testet OpenWeather-respons og bekreftet at temperatur og værbeskrivelse oppdateres direkte i `#weather-info`.
+- Endret oppgavefunksjonalitet slik at oppgaver legges inn én gang og blir stående.
+- Forenklet skjema for mindre friksjon.
+- Tilpasset visning og lagring i localStorage.
 
 **Hvorfor:**
-- Øker nytteverdien ved at appen nå fungerer for flere lokasjoner, ikke bare Oslo.
-- Gir brukeren mer kontroll på informasjonen selv — i stedet for GPS, som krever mer avansert kode og personvern-hensyn.
+- Mer realistisk og brukervennlig flyt.
 
-**Lært i dag:**
-- Hvordan hente og bruke data dynamisk fra UI-input.
-- Hvordan trigge API-kall både via knapp og tastatur (Enter-listener).
-- Hvordan gjøre DOM-oppdatering trygg (kun hvis elementet finnes).
+---
 
-### 20. november - Endret plan
-I den første versjonen måtte brukeren skrive inn tittel, tildelt person og dato hver gang en oppgave skulle legges inn. Etter evaluering innså jeg at dette ga for mye friksjon/dårlig flyt, og ikke samsvarte med målet for appen – å gjøre husarbeid mer oversiktlig og enkelt.
+### 7. desember – Stor milepæl: AI-integrasjon og automatiske husarbeidstips
 
-Derfor ble funksjonen endret til:
+**Gjort:**
+- Fullstendig omskrevet `app.js` for bedre struktur og tydeligere logikk.
+- Implementert automatisk AI-generering av husarbeidstips basert på:
+  - temperatur  
+  - værbeskrivelse  
+  - valgt sted  
+- Laget dedikert funksjon: `generateWeatherTip()` for å håndtere AI-forslag.
+- Lagt inn loading-tekst, feilhåndtering og fallback-svar ved API-problemer.
+- Opprettet `chatbot.js` og integrert **Vaskebot** på `tasks.html`.
+- Vaskebot støtter både faste forslag (knapp) og fritekst-spørsmål fra brukeren.
+- Testet hele flyten i UI og bekreftet at både vær og AI-tips fungerer som forventet.
 
-• brukeren legger inn en oppgave kun én gang
-• oppgaven blir sendt til "Aktive oppgaver" og ligger der fast
-• en oppgave kan deretter utføres flere ganger uten å måtte opprettes på nytt
-
-Denne endringen gjør arbeidsflyten raskere og mer brukervennlig, særlig for gjentagende oppgaver som finnes i alle hus (f.eks. støvsuge, gå ut med søppel, vaske bad, mate dyr). Beslutningen ble tatt etter testing og refleksjon rundt hva som faktisk gir verdi for brukeren i hverdagen.
+**Eksempel på AI-forslag:**
+> “Siden det er overskyet og kjølig ute, kan det være en perfekt anledning til å rydde i boden eller garasjen.”
 
 
 ## 3. Teknisk oversikt
 
 | Fil / mappe | Beskrivelse |
-|--------------|--------------|
-| `index.html` | Hovedside med værseksjon og snarveier |
-| `tasks.html` | Side for å legge til og vise aktive oppgaver |
+|------------|-------------|
+| `index.html` | Hovedside med værdata og automatiske AI-tips |
+| `tasks.html` | Side for å legge til og vise aktive oppgaver, inkludert chatbot |
 | `done.html`  | Viser fullførte oppgaver hentet fra localStorage |
-| `styles/base.css` | Felles stilark for alle sider |
-| `scripts/` | Samler JavaScript-filer for funksjonalitet og lagring |
-| `README.md` | Dokumentasjon av fremdrift, refleksjon og plan |
+| `styles/base.css` | Felles stilark |
+| `scripts/app.js` | Værfunksjon + AI-husarbeidstips |
+| `scripts/chatbot.js` | AI-chatbot for oppgaver |
+| `scripts/tasks.js` | Logikk for oppgaver |
+| `scripts/storage.js` | Håndtering av localStorage |
+| `scripts/config.js` | API-nøkler (ignorert i GitHub) |
 
 ---
 
 ## 4. Referanser og ressurser
 
-- OpenAI API dokumentasjon  
-- OpenWeather API dokumentasjon  
-- MDN Web Docs (HTML, CSS, JavaScript)  
+- OpenAI API-dokumentasjon  
+- OpenWeather API-dokumentasjon  
+- MDN Web Docs  
 - GitHub Guides  
-- Chrome DevTools / Lighthouse for testing  
+- Chrome DevTools / Lighthouse  
 
 ---
 
-## 5. To-do-liste (oppdatert 13. november)
+## 5. To-do-liste (oppdatert per 7. desember)
 
 | Status | Oppgave |
-|:------:|:--------|
+|--------|---------|
 | [x] | Opprette GitHub-repo og koble til VS Code |
 | [x] | Lage prosjektstruktur (HTML, CSS, JS-mapper) |
-| [x] | Lage grunnleggende layout i HTML (header, main, footer) |
-| [x] | Opprette felles stilark `base.css` og koble til alle sider |
-| [x] | Implementere oppgaveside (`tasks.html`) med skjema for nye oppgaver |
-| [x] | Oppdatere `done.html` for å vise historikk over fullførte oppgaver |
-| [x] | Lære og utføre Git-kommandoer (add, commit, push) |
-| [~] | Forbedre felles CSS og struktur på tvers av sider |
-| [~] | Teste og justere responsivitet (mobil, nettbrett, PC) |
-| [x] | Dokumentere fremdrift etter hver arbeidsøkt i README |
-| [x] | Sette opp `config.js` og `.gitignore` for API-nøkler |
-| [x] | Teste OpenAI API og hente første svar |
-| [x] | Teste OpenWeather API og hente ekte temperatur |
-| [~] | Implementere chatbot (OpenAI API) tilgjengelig på alle sider |
-| [x] | Vise ekte værdata dynamisk på forsiden |
-| [ ] | Legge til funksjon for å markere oppgaver som fullført |
-| [ ] | Lagre oppgaver i localStorage slik at de ikke forsvinner ved oppdatering |
-| [ ] | Legge til enkel validering på skjema (tomt felt, frist osv.) |
-| [ ] | Legge til forslag basert på vær (eks. “Perfekt dag for å vaske vinduer”) |
+| [x] | Lage grunnleggende layout i HTML |
+| [x] | Opprette felles stilark (`base.css`) |
+| [x] | Implementere oppgaveside med skjema |
+| [x] | Oppdatere `done.html` for fullførte oppgaver |
+| [x] | Utføre Git-arbeid (add, commit, push) |
+| [~] | Forbedre CSS og visuell konsistens |
+| [~] | Teste og forbedre responsivitet |
+| [x] | Dokumentere fremdrift i README |
+| [x] | Sette opp `config.js` og `.gitignore` |
+| [x] | Teste OpenAI API |
+| [x] | Teste OpenWeather API |
+| [x] | Implementere AI-chatbot på oppgavesiden |
+| [x] | Vise dynamiske værdata på forsiden |
+| [x] | Lage automatisk AI-tips basert på vær |
+| [x] | Lagre oppgaver i localStorage |
+| [ ] | Markere oppgaver som fullført og flytte dem |
+| [ ] | Fullføre styling på alle sider |
+| [ ] | Skrive refleksjonsjournal |
+| [ ] | Gjøre README helt klar for innlevering |
 
+---
+
+## 6. Videre forbedringer (hva jeg ville gjort med mer tid)
+
+Hvis jeg skulle videreutvikle appen, ville jeg prioritert:
+
+- Gjøre appen nedlastbar som PWA (Progressive Web App)
+- Støtte for flere brukere i samme husholdning
+- Automatisk tidsrullering av oppgaver:
+  - daglig / ukentlig / månedlig
+- Mulighet for tildeling av oppgaver til familiemedlemmer
+- Filtrering og sortering av oppgaver
+- Sesongbaserte og tidspunktsbaserte AI-forslag
+- Mer visuell polish (animasjoner, ikoner, mikrointeraksjoner)
 
 ---
 
