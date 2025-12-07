@@ -6,8 +6,11 @@
   <title>Alt i orden | Oppgaver</title>
   <link rel="stylesheet" href="styles/base.css" />
 </head>
+
 <body>
-  <!-- HEADER -->
+  <!-- =========================================
+       HEADER: Sideoverskrift + navigasjon
+  ========================================== -->
   <header>
     <h1>Oppgaver</h1>
     <nav>
@@ -17,11 +20,17 @@
     </nav>
   </header>
 
-  <!-- HOVEDINNHOLD -->
+  <!-- =========================================
+       HOVEDINNHOLD
+  ========================================== -->
   <main>
-    <!-- Skjema for å legge til faste husarbeids-oppgaver -->
+
+    <!-- ==========================
+         Seksjon: Legg til oppgave
+    =========================== -->
     <section class="card">
       <h2>Legg til oppgave</h2>
+
       <form id="taskForm" novalidate>
         <label>
           Rom/kategori *
@@ -51,20 +60,26 @@
       </form>
     </section>
 
-    <!-- Fast liste over oppgaver som er lagt inn -->
+    <!-- ==========================
+         Seksjon: Aktive oppgaver
+    =========================== -->
     <section class="card">
       <h2>Aktive oppgaver</h2>
+
       <ul id="taskList" class="list"></ul>
       <p id="emptyState">Ingen oppgaver enda.</p>
     </section>
+
   </main>
 
-  <!-- FOOTER -->
+  <!-- =========================================
+       FOOTER
+  ========================================== -->
   <footer>
     <p>© 2025 Alt i orden</p>
   </footer>
 
-  <!-- Først lagring, så logikken for oppgaver -->
+  <!-- Skripter: Lagring og oppgavelogikk -->
   <script src="scripts/storage.js"></script>
   <script src="scripts/tasks.js"></script>
 </body>

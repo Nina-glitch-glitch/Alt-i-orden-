@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Bonus: Enter i input-feltet fungerer som å trykke på knappen
+    // Enter i input-feltet fungerer som å trykke på knappen
     cityInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         cityButton.click();

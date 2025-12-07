@@ -13,8 +13,9 @@
 </head>
 
 <body>
-  <!--  HEADER -->
-  <!-- logo/tittel og hovednavigasjon -->
+  <!-- =========================================
+       HEADER: Logo / Tittel + Hovednavigasjon
+  ========================================== -->
   <header>
     <h1>Alt i orden 🏡</h1>
     <nav>
@@ -24,40 +25,49 @@
     </nav>
   </header>
 
-  <!-- HOVEDINNHOLD -->
+  <!-- =========================================
+       HOVEDINNHOLD
+  ========================================== -->
   <main>
 
-    <!--  Introduksjon -->
+    <!-- ==========================
+         Introduksjon
+    =========================== -->
     <section class="intro">
       <h2>Orden i hverdagen starter her</h2>
       <p>Få et daglig forslag til husarbeid basert på været ☀️</p>
     </section>
 
-    <!-- Værseksjon -->
-    <!-- vær-API integreres og gir forslag -->
- <section id="weather">
-  <h3>Dagens vær</h3>
+    <!-- ==========================
+         Vær og daglige tips
+    =========================== -->
+    <section id="weather">
+      <h2>Vær og dagens tips</h2>
 
-  <!-- Lite skjema for å velge by -->
-  <div class="weather-controls">
-    <label for="weather-city">Velg sted:</label>
-    <input
-      type="text"
-      id="weather-city"
-      placeholder="F.eks. Oslo, Hamar, Brumunddal"
-    />
-    <button type="button" id="weather-button">Oppdater vær</button>
-  </div>
+      <!-- Underseksjon: Dagens vær -->
+      <h3>Dagens vær</h3>
 
-  <div id="weather-info">Laster værdata...</div>
+      <div class="weather-controls">
+        <label for="weather-city">Velg sted:</label>
+        <input
+          type="text"
+          id="weather-city"
+          placeholder="F.eks. Oslo, Hamar, Brumunddal"
+        />
+        <button type="button" id="weather-button">Oppdater vær</button>
+      </div>
 
-  <!-- Plass til daglig forslag senere -->
-  <p id="weather-tip"></p>
-</section>
-    <!--  Snarveier -->
-    <!-- Knapper som leder til de andre sidene -->
+      <div id="weather-info">Laster værdata...</div>
+
+      <!-- Daglig arbeidsforslag kommer her -->
+      <p id="weather-tip"></p>
+    </section>
+
+    <!-- ==========================
+         Snarveier til andre sider
+    =========================== -->
     <section class="shortcuts">
-      <h3>Snarveier</h3>
+      <h2>Snarveier</h2>
       <div class="buttons">
         <a href="tasks.html" class="btn">Se oppgaver</a>
         <a href="done.html" class="btn">Fullførte</a>
@@ -66,7 +76,9 @@
 
   </main>
 
-  <!--  FOOTER -->
+  <!-- =========================================
+       FOOTER
+  ========================================== -->
   <footer>
     <p>© 2025 Alt i orden</p>
   </footer>
@@ -79,4 +91,3 @@
 
 </body>
 </html>
-
