@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
       id: Date.now(),
       title: title,
       room: room,
-      done: false, // brukes senere når vi markerer utført
+      done: false, // markeres som fullført senere
       createdAt: new Date().toISOString(),
     };
 
@@ -70,24 +70,30 @@ document.addEventListener("DOMContentLoaded", () => {
       text.classList.add("task-title");
       text.textContent = `${task.room}: ${task.title}`;
 
-      // Knapp for senere (markere utført)
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.classList.add("task-toggle");
-      btn.textContent = task.done ? "Utført" : "Gjør i dag";
+      // Knapp for å markere oppgave som fullført
+      const taskButton = document.createElement("button");
+      taskButton.type = "button";
+      taskButton.classList.add("task-toggle");
+      taskButton.textContent = task.done ? "Utført" : "Gjør i dag";
 
-      // Foreløpig bare toggler vi done-statusen
-      btn.addEventListener("click", () => {
-        task.done = !task.done;
+      // Hvis oppgaven allerede er fullført, skal knappen ikke gjøre noe
+      if (task.done) {
+        taskButton.disabled = true;
+      }
+
+      // Marker oppgaven som fullført og lagre til localStorage
+      taskButton.addEventListener("click", () => {
+        if (task.done) return; // ekstra sikring
+
+        task.done = true;
         TaskStorage.save(tasks);
+        console.log("Markert som fullført:", task);
         renderTasks();
       });
 
       li.appendChild(text);
-      li.appendChild(btn);
+      li.appendChild(taskButton);
       taskList.appendChild(li);
     });
   }
 });
-
-

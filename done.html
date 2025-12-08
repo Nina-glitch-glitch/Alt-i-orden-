@@ -31,36 +31,56 @@
     <p>© 2025 Alt i orden</p>
   </footer>
 
-  <!-- SCRIPTS -->
+   <!-- SCRIPTS -->
   <script src="scripts/storage.js"></script>
   <script>
-    // Leser fullførte oppgaver fra localStorage og viser dem
-    const list = document.getElementById('doneList');
-    const empty = document.getElementById('emptyDone');
+    /* ===========================================
+       Henting og visning av fullførte oppgaver
+       - Leser oppgaver fra TaskStorage
+       - Filtrerer på oppgaver som er markert som fullført
+       - Viser dem i #doneList
+    ============================================ */
 
-    function renderDone() {
-      const items = window.Store.load(window.Store.keys.DONE);
-      list.innerHTML = '';
-      if (!items.length) {
-        empty.style.display = 'block';
-        return;
+    document.addEventListener("DOMContentLoaded", () => {
+      const doneList = document.getElementById("doneList");
+      const emptyDone = document.getElementById("emptyDone");
+
+      function renderDoneTasks() {
+        const allTasks = TaskStorage.load();
+
+        // Sikrer at data fra storage er et array
+        const validTasks = Array.isArray(allTasks) ? allTasks : [];
+
+        // Filtrerer ut oppgaver som er markert som fullført
+        // Her godtas alle "truthy" verdier (true, "true", 1 osv.)
+        const completed = validTasks.filter(
+          (task) => task && task.done
+        );
+
+        doneList.innerHTML = "";
+
+        if (!completed.length) {
+          emptyDone.style.display = "block";
+          return;
+        }
+
+        emptyDone.style.display = "none";
+
+        completed.forEach((task) => {
+          const li = document.createElement("li");
+          li.classList.add("task-item", "task-done");
+
+          const text = document.createElement("span");
+          text.classList.add("task-title");
+          text.textContent = `${task.room}: ${task.title}`;
+
+          li.appendChild(text);
+          doneList.appendChild(li);
+        });
       }
-      empty.style.display = 'none';
 
-      for (const t of items) {
-        const li = document.createElement('li');
-        li.innerHTML = `
-          <div>
-            <strong>${t.title}</strong>
-            <div class="meta">
-              ${t.category ?? ''}${t.assignee ? ' • ' + t.assignee : ''}${t.completedAt ? ' • fullført: ' + t.completedAt.slice(0,10) : ''}
-            </div>
-          </div>`;
-        list.appendChild(li);
-      }
-    }
-
-    renderDone();
+      renderDoneTasks();
+    });
   </script>
 </body>
 </html>

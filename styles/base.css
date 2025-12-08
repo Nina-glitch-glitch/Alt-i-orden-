@@ -1,16 +1,29 @@
 /* =========================
    GRUNNOPPSETT
    ========================= */
-* { box-sizing: border-box; }
-html { font-size: 16px; }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: #f9f9f9;
+  background: #f3f4f6;
   color: #333;
+  line-height: 1.5;
 }
-img, video { max-width: 100%; height: auto; display: block; }
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
 /* =========================
    FARGER/VARIABLER
@@ -18,10 +31,12 @@ img, video { max-width: 100%; height: auto; display: block; }
 :root {
   --brand: #2e8b57;
   --brand-dark: #256b45;
-  --text: #333;
-  --muted: #475569;
-  --card: #fff;
-  --shadow: 0 1px 4px rgba(0,0,0,.08);
+  --text: #111827;
+  --muted: #6b7280;
+  --card: #ffffff;
+  --shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  --border-soft: #e5e7eb;
+  --bg-soft: #e7f5f0;
 }
 
 /* =========================
@@ -30,24 +45,71 @@ img, video { max-width: 100%; height: auto; display: block; }
 header {
   background: var(--brand);
   color: #fff;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
 }
+
+header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.02em;
+}
+
+nav {
+  margin-top: 0.5rem;
+}
+
 nav a {
   color: #fff;
   margin-right: 1rem;
   text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
 }
-nav a:hover { text-decoration: underline; }
-nav a[aria-current="page"] { text-decoration: underline; }
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav a[aria-current="page"] {
+  text-decoration: underline;
+}
 
 /* =========================
    LAYOUT/SEKSJONER
    ========================= */
-main { padding: 1.5rem; }
-section { margin-bottom: 2rem; }
-footer { padding: 1rem 1.5rem; color: var(--muted); }
+main {
+  padding: 1.5rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+footer {
+  padding: 1rem 1.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 @media (min-width: 768px) {
-  main { max-width: 900px; margin: 0 auto; }
+  header {
+    padding: 1rem 0;
+  }
+
+  header > * {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  footer {
+    max-width: 900px;
+    margin: 0 auto;
+  }
 }
 
 /* =========================
@@ -55,83 +117,218 @@ footer { padding: 1rem 1.5rem; color: var(--muted); }
    ========================= */
 .intro {
   text-align: center;
-  background: #e7f5f0;
+  background: var(--bg-soft);
   padding: 2rem 1rem;
-  border-radius: 6px;
+  border-radius: 12px;
+  margin-bottom: 2rem;
 }
+
+.intro h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.intro p {
+  margin: 0;
+  color: var(--muted);
+}
+
 #weather {
   background: var(--card);
-  padding: 1.25rem;
-  border-radius: 6px;
+  padding: 1.5rem;
+  border-radius: 12px;
   box-shadow: var(--shadow);
 }
-.shortcuts { text-align: center; }
+
+#weather h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+#weather h3 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.weather-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+#weather-info {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+#weather-tip {
+  margin-top: 0.5rem;
+  color: var(--muted);
+}
+
+/* =========================
+   SNARVEIER
+   ========================= */
+.shortcuts {
+  text-align: center;
+}
+
+.shortcuts h2 {
+  margin-bottom: 0.5rem;
+}
+
 .buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
 }
 
 /* =========================
    KNAPPER
    ========================= */
-button, .btn {
+button,
+.button {
   background: var(--brand);
   color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.4rem;
   cursor: pointer;
-  border-radius: 5px;
-  transition: background 0.2s;
+  border-radius: 999px;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+  font: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.4rem;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+  text-decoration: none;
 }
-button:hover, .btn:hover { background: var(--brand-dark); }
-button:disabled { opacity: .6; cursor: not-allowed; }
+
+button:hover,
+.button:hover {
+  background: var(--brand-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.16);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Sekundærstil for snarveier (hvite knapper) */
+.shortcuts .button {
+  background: #ffffff;
+  color: var(--brand);
+  border: 1px solid var(--brand);
+  box-shadow: none;
+}
+
+.shortcuts .button:hover {
+  background: var(--bg-soft);
+}
 
 /* =========================
    KORT/LISTER
    ========================= */
 .card {
   background: var(--card);
-  padding: 1.25rem;
-  border-radius: 6px;
+  padding: 1.5rem;
+  border-radius: 12px;
   box-shadow: var(--shadow);
 }
+
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
 .list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: .5rem;
+  gap: 0.5rem;
 }
+
 .list li {
-  background: #fff;
-  border: 1px solid #e7e7e7;
-  border-radius: 6px;
-  padding: .6rem .8rem;
+  background: #ffffff;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
 }
-.meta { color: var(--muted); font-size: .9rem; }
+
+/* Oppgave-liste spesifikt */
+.task-item {
+  /* base-stil arver fra .list li */
+}
+
+.task-title {
+  font-weight: 500;
+}
+
+/* "Utført"-stil – brukes både på aktive og fullførte sider */
+.task-done {
+  background: #e6f4ea;
+  border-color: #b7e0c2;
+  opacity: 0.9;
+}
+
+.task-toggle {
+  min-width: 6.5rem;
+  font-size: 0.9rem;
+}
+
+/* Meta-tekst (brukes på done.html hvis du vil bygge ut senere) */
+.meta {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
 
 /* =========================
    SKJEMA
    ========================= */
-form { display: grid; gap: .75rem; }
-label { display: grid; gap: .25rem; }
-input, select, textarea, button {
+form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+label {
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.95rem;
+}
+
+input,
+select,
+textarea {
   font: inherit;
-  padding: .6rem .8rem;
-  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
 }
-input, select, textarea {
-  border: 1px solid #dcdcdc;
-  background: #fff;
+
+button,
+.button {
+  /* font og radius på knapper er allerede satt ovenfor */
 }
-input:focus, select:focus, textarea:focus, a:focus, button:focus {
+
+input:focus,
+select:focus,
+textarea:focus,
+a:focus,
+button:focus {
   outline: 2px solid #94d3ac;
   outline-offset: 2px;
 }
@@ -139,6 +336,39 @@ input:focus, select:focus, textarea:focus, a:focus, button:focus {
 /* =========================
    MELDINGER
    ========================= */
-#error, .error { color: #b00020; margin: 0; }
-#emptyState, #emptyDone { color: var(--muted); text-align: center; }
+#error,
+.error {
+  color: #b00020;
+  margin: 0;
+  font-size: 0.9rem;
+}
 
+#emptyState,
+#emptyDone {
+  color: var(--muted);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* =========================
+   CHATBOT
+   ========================= */
+.chatbot {
+  background: #f8fafc;
+  border-left: 4px solid var(--brand);
+}
+
+.chatbot p {
+  margin-top: 0;
+  color: var(--muted);
+}
+
+#chatbot-answer {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  min-height: 2.2rem;
+  font-size: 0.95rem;
+}
