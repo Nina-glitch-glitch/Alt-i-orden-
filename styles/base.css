@@ -10,13 +10,15 @@ html {
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", Roboto, sans-serif;
   margin: 0;
   padding: 0;
-  background: #f3f4f6;
-  color: #333;
+  background: #f5f5f7;   /* lys, “Apple”-aktig bakgrunn */
+  color: #111827;        /* litt mørkere, ren tekstfarge */
   line-height: 1.5;
 }
+
 
 img,
 video {
@@ -29,37 +31,33 @@ video {
    FARGER/VARIABLER
    ========================= */
 :root {
-  --brand: #2e8b57;
-  --brand-dark: #256b45;
-  --text: #111827;
-  --muted: #6b7280;
-  --card: #ffffff;
-  --shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-  --border-soft: #e5e7eb;
-  --bg-soft: #e7f5f0;
+  --brand: #0a84ff;          /* Apple-blå */
+  --brand-dark: #0060df;     /* mørkere variant til hover */
+  --text: #111827;           /* hovedtekst */
+  --muted: #6e6e73;          /* dempet grå tekst */
+  --card: #ffffff;           /* kortbakgrunn */
+  --shadow: 0 18px 40px rgba(15, 23, 42, 0.08); /* litt mykere skygge */
 }
+
 
 /* =========================
    HEADER/NAV
    ========================= */
 header {
-  background: var(--brand);
-  color: #fff;
+  background: #ffffff;
+  color: var(--text);
   padding: 1rem 1.5rem;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.06);
 }
 
 header h1 {
-  margin: 0;
-  font-size: 1.6rem;
-  letter-spacing: 0.02em;
-}
-
-nav {
-  margin-top: 0.5rem;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 nav a {
-  color: #fff;
+  color: var(--muted);
   margin-right: 1rem;
   text-decoration: none;
   font-weight: 500;
@@ -67,12 +65,15 @@ nav a {
 }
 
 nav a:hover {
-  text-decoration: underline;
+  color: var(--brand);
 }
 
 nav a[aria-current="page"] {
-  text-decoration: underline;
+  color: var(--brand);
+  border-bottom: 2px solid var(--brand);
+  padding-bottom: 0.25rem;
 }
+
 
 /* =========================
    LAYOUT/SEKSJONER

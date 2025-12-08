@@ -172,7 +172,7 @@ Kravene for prosjektet inkluderer:
 | [x] | Vise dynamiske værdata på forsiden |
 | [x] | Lage automatisk AI-tips basert på vær |
 | [x] | Lagre oppgaver i localStorage |
-| [ ] | Markere oppgaver som fullført og flytte dem |
+| [x] | Markere oppgaver som fullført og flytte dem |
 | [ ] | Fullføre styling på alle sider |
 | [ ] | Skrive refleksjonsjournal |
 | [ ] | Gjøre README helt klar for innlevering |
