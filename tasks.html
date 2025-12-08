@@ -26,6 +26,30 @@
   <main>
 
     <!-- ==========================
+         Seksjon: Vaskebot / Chatbot
+    =========================== -->
+    <section class="card chatbot">
+      <h2>Vaskebot</h2>
+      <p>Få korte, konkrete tips til husarbeid.</p>
+
+      <button type="button" id="chatbot-suggest-bath">
+        🧼 Hei! Trenger du tips til vasking av bad?
+      </button>
+
+      <form id="chatbot-form">
+        <label for="chatbot-input">Eller skriv et eget spørsmål:</label>
+        <input
+          id="chatbot-input"
+          type="text"
+          placeholder="F.eks. Hvordan kan jeg rydde stua raskt?"
+        />
+        <button type="submit">Spør vaskebot</button>
+      </form>
+
+      <div id="chatbot-answer" aria-live="polite"></div>
+    </section>
+
+    <!-- ==========================
          Seksjon: Legg til oppgave
     =========================== -->
     <section class="card">
@@ -70,30 +94,6 @@
       <p id="emptyState">Ingen oppgaver enda.</p>
     </section>
 
-    <!-- ==========================
-         Seksjon: Vaskebot / Chatbot
-    =========================== -->
-    <section class="card chatbot">
-      <h2>Vaskebot</h2>
-      <p>Få korte, konkrete tips til husarbeid.</p>
-
-      <button type="button" id="chatbot-suggest-bath">
-        🧼 Hei! Trenger du tips til vasking av bad?
-      </button>
-
-      <form id="chatbot-form">
-        <label for="chatbot-input">Eller skriv et eget spørsmål:</label>
-        <input
-          id="chatbot-input"
-          type="text"
-          placeholder="F.eks. Hvordan kan jeg rydde stua raskt?"
-        />
-        <button type="submit">Spør vaskebot</button>
-      </form>
-
-      <div id="chatbot-answer" aria-live="polite"></div>
-    </section>
-
   </main>
 
   <!-- =========================================
@@ -110,4 +110,3 @@
   <script src="scripts/chatbot.js"></script>
 </body>
 </html>
-

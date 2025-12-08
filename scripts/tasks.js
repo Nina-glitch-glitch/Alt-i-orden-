@@ -89,6 +89,9 @@ document.addEventListener("DOMContentLoaded", () => {
         TaskStorage.save(tasks);
         console.log("Markert som fullført:", task);
         renderTasks();
+
+        // Send brukeren videre til siden for fullførte oppgaver
+        window.location.href = "done.html";
       });
 
       li.appendChild(text);
