@@ -30,7 +30,49 @@ Kravene for prosjektet inkluderer:
 
 ---
 
-## 2. Fremdriftslogg
+## 2. Hvordan kjøre prosjektet lokalt
+
+Slik kan du kjøre appen på egen maskin:
+
+1. **Last ned prosjektet**
+   - Gå til repoet: `https://github.com/Nina-glitch-glitch/Alt-i-orden-`
+   - Klikk på **Code → Download ZIP**, og pakk ut  
+     _eller_ klon repoet:
+     ```bash
+     git clone https://github.com/Nina-glitch-glitch/Alt-i-orden-.git
+     ```
+
+2. **Åpne prosjektmappen**
+   - Pakk ut ZIP-filen
+   - Naviger inn i mappen `Alt-i-orden-`
+   - Finn filen **index.html**
+
+3. **Sett opp API-nøkler**
+   - Lag filen `scripts/config.js`
+   - Kopier innholdet fra `scripts/config.js.example`
+   - Fyll inn dine egne nøkler:
+     ```js
+     window.CONFIG = {
+       OPENWEATHER_API_KEY: "DIN_NØKKEL",
+       OPENAI_API_KEY: "DIN_NØKKEL"
+     };
+     ```
+
+   **Hvis du hopper over dette:**
+   - Vær-widgeten viser feilmelding
+   - AI-funksjonene (Vaskebot + værbasert tips) skrus av
+
+4. **Start appen**
+   - Dobbeltklikk på `index.html` for å åpne appen i nettleseren.
+   - Ingen server eller installasjon er nødvendig.
+
+5. **Navigasjon**
+   - `index.html` – forside med vær + dagens tips  
+   - `tasks.html` – legg til og gjør oppgaver  
+   - `done.html` – fullførte oppgaver lagret i localStorage
+
+
+## 3. Fremdriftslogg
 
 ### 7. november – Oppstart og planlegging
 **Gjort:**
@@ -125,7 +167,27 @@ Kravene for prosjektet inkluderer:
 > “Siden det er overskyet og kjølig ute, kan det være en perfekt anledning til å rydde i boden eller garasjen.”
 
 
-## 3. Teknisk oversikt
+### 8. desember - fullføringsflyt og gjennomgang med Reza(lærer)
+
+- Ryddet og forbedret strukturen i tasks.js
+- Implementert funksjon slik at oppgaver som markeres som fullført automatisk flyttes til done.html
+- Lagt til at brukeren videresendes til fullførte siden (done.html) når en oppgave fullføres
+- Rettet feil med dupliserte seksjoner i tasks.html etter kopiering av HTML
+- Flyttet Vaskebot-seksjonen slik at den ligger øverst i oppgave-siden
+- Testet fullføringsflyten fra Aktive oppgaver → Fullførte – logikken fungerer nå
+- Ryddet localStorage for å teste
+- Bekreftet med DevTools Console at oppgaver lagres og oppdateres riktig
+
+
+### 9. desember - Read me forbedringer etter tilbakemelding
+
+- Oppdatert og presisert instruksjonene om config.js og config.example.js
+- Gjenopprettet config.example.js 
+- Forbedringer av forsiden (idé om illustrasjon, bedre førsteinntrykk)
+
+
+
+## 4. Teknisk oversikt
 
 | Fil / mappe | Beskrivelse |
 |------------|-------------|
@@ -141,17 +203,17 @@ Kravene for prosjektet inkluderer:
 
 ---
 
-## 4. Referanser og ressurser
+## 5. Referanser og ressurser
 
 - OpenAI API-dokumentasjon  
 - OpenWeather API-dokumentasjon  
 - MDN Web Docs  
 - GitHub Guides  
 - Chrome DevTools / Lighthouse  
-
+- Qybele og mentor Reza
 ---
 
-## 5. To-do-liste (oppdatert per 7. desember)
+## 6. To-do-liste (oppdatert per 7. desember)
 
 | Status | Oppgave |
 |--------|---------|
@@ -179,7 +241,7 @@ Kravene for prosjektet inkluderer:
 
 ---
 
-## 6. Videre forbedringer (hva jeg ville gjort med mer tid)
+## 7. Videre forbedringer (hva jeg ville gjort med mer tid)
 
 Hvis jeg skulle videreutvikle appen, ville jeg prioritert:
 
