@@ -11,14 +11,32 @@
   <!-- =========================================
        HEADER: Sideoverskrift + navigasjon
   ========================================== -->
-  <header>
-    <h1>Oppgaver</h1>
-    <nav>
-      <a href="index.html">Hjem</a>
-      <a href="tasks.html" aria-current="page">Oppgaver</a>
-      <a href="done.html">Fullførte</a>
+ <header class="site-header">
+  <div class="site-header-inner">
+    <div class="brand">
+      <span class="brand-logo" aria-hidden="true">🏡</span>
+      <span class="brand-text">Alt i orden</span>
+    </div>
+
+    <nav class="main-nav" aria-label="Hovedmeny">
+      <a href="index.html">
+        <span class="nav-icon" aria-hidden="true">🏠</span>
+        <span class="nav-text">Hjem</span>
+      </a>
+      <a href="tasks.html" aria-current="page">
+        <span class="nav-icon" aria-hidden="true">🧹</span>
+        <span class="nav-text">Oppgaver</span>
+      </a>
+      <a href="done.html">
+        <span class="nav-icon" aria-hidden="true">✅</span>
+        <span class="nav-text">Fullførte</span>
+      </a>
     </nav>
-  </header>
+  </div>
+
+  <h1 class="page-title">Oppgaver</h1>
+</header>
+
 
   <!-- =========================================
        HOVEDINNHOLD
