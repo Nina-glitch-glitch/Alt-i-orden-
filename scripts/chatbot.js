@@ -1,7 +1,7 @@
 /* ===========================================
-   Vaskebot / Chatbot for husarbeidstips
+   1. Vaskebot / Chatbot
+   - Gir korte, konkrete husarbeidstips
    - Bruker OpenAI via window.CONFIG.OPENAI_API_KEY
-   - Viser korte, konkrete tips på norsk
 =========================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -10,19 +10,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatbotInput = document.getElementById("chatbot-input");
   const chatbotAnswer = document.getElementById("chatbot-answer");
 
+  // Sjekk at alle nødvendige elementer finnes
   if (!suggestBathButton || !chatbotForm || !chatbotInput || !chatbotAnswer) {
-    console.warn("Chatbot-elementer ble ikke funnet på siden.");
+    console.warn("Chatbot-elementer ble ikke funnet på denne siden.");
     return;
   }
 
-  // Fast spørsmål: tips til vasking av bad
+  /* -------------------------------------------
+     A. Fast knapp: foreslå tips til vask av bad
+  ------------------------------------------- */
   suggestBathButton.addEventListener("click", () => {
     const question =
       "Gi meg et kort, konkret tips til hvordan jeg kan vaske badet i dag.";
     askCleaningBot(question, chatbotAnswer);
   });
 
-  // Eget spørsmål fra brukeren
+  /* -------------------------------------------
+     B. Brukerspørsmål
+  ------------------------------------------- */
   chatbotForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -34,14 +39,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/**
- * Kaller OpenAI og viser svar til brukeren
- */
+/* ===========================================
+   2. OpenAI-kall
+   - Tar inn et spørsmål og skriver svaret til UI
+=========================================== */
 async function askCleaningBot(question, answerElement) {
   const apiKey = window.CONFIG && window.CONFIG.OPENAI_API_KEY;
 
   if (!apiKey) {
-    console.error("Ingen OpenAI-nøkkel funnet (sjekk CONFIG).");
+    console.error("Ingen OpenAI-nøkkel funnet (sjekk config.js).");
     answerElement.textContent =
       "Jeg finner ikke API-nøkkelen akkurat nå. Sjekk config.js.";
     return;
@@ -54,7 +60,7 @@ async function askCleaningBot(question, answerElement) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`
+        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
         model: "gpt-4o-mini",
@@ -62,14 +68,14 @@ async function askCleaningBot(question, answerElement) {
           {
             role: "system",
             content:
-              "Du er en vennlig, kortfattet husarbeidsassistent. Svar alltid på norsk med 2–4 setninger og konkrete råd."
+              "Du er en vennlig, kortfattet husarbeidsassistent. Svar alltid på norsk og gi konkrete, praktiske tips (2–4 setninger).",
           },
           {
             role: "user",
-            content: question
-          }
-        ]
-      })
+            content: question,
+          },
+        ],
+      }),
     });
 
     const data = await response.json();

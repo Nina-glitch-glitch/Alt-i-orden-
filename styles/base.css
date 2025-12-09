@@ -37,7 +37,6 @@ video {
   --card: #ffffff;
   --shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
 
-  /* lagt til -> brukt i komponenter */
   --bg-soft: #f5f5f7;
   --border-soft: #e5e7eb;
 }
@@ -86,6 +85,7 @@ video {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex-wrap: wrap;          /* litt snillere på små skjermer */
 }
 
 .main-nav a {
@@ -93,6 +93,7 @@ video {
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
+
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
@@ -118,7 +119,7 @@ video {
   box-shadow: 0 4px 10px rgba(15, 23, 42, 0.10);
 }
 
-/* Sidetittel */
+/* Sidetittel under nav */
 .page-title {
   max-width: 900px;
   margin: 0.9rem auto 0;

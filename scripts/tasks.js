@@ -1,8 +1,13 @@
-// tasks.js
-// Håndterer skjema og liste for oppgaver (fast husarbeidsliste)
+/* ===========================================
+   Oppgaver (tasks.html)
+   - Håndterer skjema og liste for faste husarbeidsoppgaver
+   - Bruker TaskStorage for lagring i localStorage
+=========================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Finn HTML-elementene
+  /* -------------------------------------------
+     1. Finn HTML-elementene
+  ------------------------------------------- */
   const form = document.getElementById("taskForm");
   const roomSelect = document.getElementById("category");
   const titleInput = document.getElementById("title");
@@ -11,12 +16,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const taskList = document.getElementById("taskList");
   const emptyState = document.getElementById("emptyState");
 
-  // 2. Last oppgaver fra localStorage
+  // Hvis noe mangler, avslutt pent (beskytter hvis scriptet lastes feil sted)
+  if (!form || !roomSelect || !titleInput || !taskList || !emptyState) {
+    console.warn("tasks.js: Fant ikke alle forventede elementer på siden.");
+    return;
+  }
+
+  /* -------------------------------------------
+     2. Last oppgaver fra localStorage
+  ------------------------------------------- */
   let tasks = TaskStorage.load(); // fra storage.js
 
   renderTasks();
 
-  // 3. Når brukeren trykker "Send til aktive oppgaver"
+  /* -------------------------------------------
+     3. Håndter innsending av skjema
+  ------------------------------------------- */
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     errorBox.textContent = "";
@@ -44,10 +59,12 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTasks();
 
     form.reset();
-    roomSelect.value = "Hele huset";
+    roomSelect.value = "";
   });
 
-  // 4. Tegn opp liste over aktive oppgaver
+  /* -------------------------------------------
+     4. Tegn opp liste over oppgaver
+  ------------------------------------------- */
   function renderTasks() {
     taskList.innerHTML = "";
 

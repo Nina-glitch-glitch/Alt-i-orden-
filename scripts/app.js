@@ -1,8 +1,9 @@
-/* =========================================== 
-   Init / sjekk av konfigurasjon
+/* ===========================================
+   1. Init / sjekk av konfigurasjon
    - Bekrefter at window.CONFIG finnes
    - Logger hvilke nøkler som er satt
 =========================================== */
+
 (function initConfigCheck() {
   if (!window.CONFIG) {
     console.error("CONFIG mangler: scripts/config.js er ikke lastet inn.");
@@ -11,7 +12,7 @@
 
   console.log("CONFIG lastet:", {
     hasOpenWeather: Boolean(window.CONFIG.OPENWEATHER_API_KEY),
-    hasOpenAI: Boolean(window.CONFIG.OPENAI_API_KEY)
+    hasOpenAI: Boolean(window.CONFIG.OPENAI_API_KEY),
   });
 
   // Ekstra sjekk: viser spesifikt om OpenAI-nøkkelen finnes
@@ -19,11 +20,14 @@
 })();
 
 /* ===========================================
-   Demo og init av siden
-   - Kjører værkall og OpenAI-test når siden lastes
+   2. DOM-oppstart for forsiden
    - Knytter input + knapp til testWeather(city)
+   - Kjører første værkall og OpenAI-test når siden lastes
 =========================================== */
+
 document.addEventListener("DOMContentLoaded", () => {
+  // Siden dette scriptet bare brukes på forsiden,
+  // antar vi at disse ID-ene finnes her.
   const cityInput = document.getElementById("weather-city");
   const cityButton = document.getElementById("weather-button");
 
@@ -36,11 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const city = cityInput.value.trim();
 
       if (city) {
-        // brukeren har skrevet inn en by
-        testWeather(city);
+        testWeather(city); // brukeren har skrevet inn en by
       } else {
-        // tomt felt → bruk standard
-        testWeather();
+        testWeather(); // tomt felt → bruk standard
       }
     });
 
@@ -52,15 +54,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3) Kjør OpenAI-test
+  // 3) Kjør OpenAI-test (konsoll-test for sensor / debugging)
   testOpenAI();
 });
 
 /* ===========================================
-   Test av OpenAI-kall (konsoll-test)
+   3. Test av OpenAI-kall (konsoll-test)
    - Bruker nøkkelen fra window.CONFIG.OPENAI_API_KEY
    - Logger svaret i Console
 =========================================== */
+
 async function testOpenAI() {
   const apiKey = window.CONFIG && window.CONFIG.OPENAI_API_KEY;
 
@@ -76,14 +79,12 @@ async function testOpenAI() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`
+        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
         model: "gpt-4o-mini",
-        messages: [
-          { role: "user", content: "Hei! Svar med ett ord: fungerer." }
-        ]
-      })
+        messages: [{ role: "user", content: "Hei! Svar med ett ord: fungerer." }],
+      }),
     });
 
     const data = await response.json();
@@ -107,11 +108,12 @@ async function testOpenAI() {
 }
 
 /* ===========================================
-   Test av OpenWeather-kall
+   4. Test av OpenWeather-kall
    - Bruker nøkkelen fra window.CONFIG.OPENWEATHER_API_KEY
    - Oppdaterer #weather-info på siden
    - Kaller generateWeatherTip(...) for å lage husarbeidstips
 =========================================== */
+
 async function testWeather(city = "Oslo") {
   const key = window.CONFIG && window.CONFIG.OPENWEATHER_API_KEY;
   const weatherBox = document.getElementById("weather-info");
@@ -151,8 +153,7 @@ async function testWeather(city = "Oslo") {
     if (!response.ok) {
       console.error("Feil fra OpenWeather:", data);
       if (weatherBox) {
-        weatherBox.textContent =
-          "Kunne ikke hente værdata akkurat nå.";
+        weatherBox.textContent = "Kunne ikke hente værdata akkurat nå.";
       }
       if (tipBox) {
         tipBox.textContent = "";
@@ -173,12 +174,11 @@ async function testWeather(city = "Oslo") {
 
       weatherBox.textContent = `${cityName}: ${temp}°C, ${desc}`;
 
-      // 🔹 NYTT: generér husarbeidstips basert på værdata
+      // Generer husarbeidstips basert på værdata
       generateWeatherTip(cityName, temp, desc);
     } else {
       if (weatherBox) {
-        weatherBox.textContent =
-          "Kunne ikke lese værdata akkurat nå.";
+        weatherBox.textContent = "Kunne ikke lese værdata akkurat nå.";
       }
       if (tipBox) {
         tipBox.textContent = "";
@@ -187,8 +187,7 @@ async function testWeather(city = "Oslo") {
   } catch (err) {
     console.error("Feil ved henting fra OpenWeather:", err);
     if (weatherBox) {
-      weatherBox.textContent =
-        "Klarte ikke å hente vær akkurat nå.";
+      weatherBox.textContent = "Klarte ikke å hente vær akkurat nå.";
     }
     if (tipBox) {
       tipBox.textContent = "";
@@ -197,10 +196,11 @@ async function testWeather(city = "Oslo") {
 }
 
 /* ===========================================
-   Generer husarbeidstips ut fra vær
+   5. Generer husarbeidstips ut fra vær
    - Bruker OpenAI (samme nøkkel som før)
    - Skriver resultatet til #weather-tip
 =========================================== */
+
 async function generateWeatherTip(cityName, temp, desc) {
   const apiKey = window.CONFIG && window.CONFIG.OPENAI_API_KEY;
   const tipBox = document.getElementById("weather-tip");
@@ -229,7 +229,7 @@ Svar på norsk, maks 2–3 setninger, og vær praktisk.
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`
+        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
         model: "gpt-4o-mini",
@@ -237,14 +237,14 @@ Svar på norsk, maks 2–3 setninger, og vær praktisk.
           {
             role: "system",
             content:
-              "Du er en vennlig husarbeidsassistent. Du gir alltid ett konkret tips til en oppgave som passer til været. Svar alltid på norsk."
+              "Du er en vennlig husarbeidsassistent. Du gir alltid ett konkret tips til en oppgave som passer til været. Svar alltid på norsk.",
           },
           {
             role: "user",
-            content: prompt
-          }
-        ]
-      })
+            content: prompt,
+          },
+        ],
+      }),
     });
 
     const data = await response.json();

@@ -11,32 +11,31 @@
   <!-- =========================================
        HEADER: Sideoverskrift + navigasjon
   ========================================== -->
- <header class="site-header">
-  <div class="site-header-inner">
-    <div class="brand">
-      <span class="brand-logo" aria-hidden="true">🏡</span>
-      <span class="brand-text">Alt i orden</span>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div class="brand">
+        <span class="brand-logo" aria-hidden="true">🏡</span>
+        <span class="brand-text">Alt i orden</span>
+      </div>
+
+      <nav class="main-nav" aria-label="Hovedmeny">
+        <a href="index.html">
+          <span class="nav-icon" aria-hidden="true">🏠</span>
+          <span class="nav-text">Hjem</span>
+        </a>
+        <a href="tasks.html" aria-current="page">
+          <span class="nav-icon" aria-hidden="true">🧹</span>
+          <span class="nav-text">Oppgaver</span>
+        </a>
+        <a href="done.html">
+          <span class="nav-icon" aria-hidden="true">✅</span>
+          <span class="nav-text">Fullførte</span>
+        </a>
+      </nav>
     </div>
 
-    <nav class="main-nav" aria-label="Hovedmeny">
-      <a href="index.html">
-        <span class="nav-icon" aria-hidden="true">🏠</span>
-        <span class="nav-text">Hjem</span>
-      </a>
-      <a href="tasks.html" aria-current="page">
-        <span class="nav-icon" aria-hidden="true">🧹</span>
-        <span class="nav-text">Oppgaver</span>
-      </a>
-      <a href="done.html">
-        <span class="nav-icon" aria-hidden="true">✅</span>
-        <span class="nav-text">Fullførte</span>
-      </a>
-    </nav>
-  </div>
-
-  <h1 class="page-title">Oppgaver</h1>
-</header>
-
+    <h1 class="page-title">Oppgaver</h1>
+  </header>
 
   <!-- =========================================
        HOVEDINNHOLD
@@ -77,13 +76,14 @@
         <label>
           Rom/kategori *
           <select id="category" required>
-            <option>Hele huset</option>
-            <option>Stue</option>
-            <option>Kjøkken</option>
-            <option>Bad</option>
-            <option>Soverom</option>
-            <option>Hage</option>
-            <option>Dyr</option>
+            <option value="">Velg rom/kategori *</option>
+            <option value="Hele huset">Hele huset</option>
+            <option value="Stue">Stue</option>
+            <option value="Kjøkken">Kjøkken</option>
+            <option value="Bad">Bad</option>
+            <option value="Soverom">Soverom</option>
+            <option value="Hage">Hage</option>
+            <option value="Dyr">Dyr</option>
           </select>
         </label>
 

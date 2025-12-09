@@ -74,6 +74,10 @@ Slik kan du kjøre appen på egen maskin:
 
 ## 3. Fremdriftslogg
 
+**Hvorfor:**
+For å sikre en profesjonell, robust og brukervennlig løsning som møter alle krav i eksamensoppgaven.
+
+
 ### 7. november – Oppstart og planlegging
 **Gjort:**
 - Gått gjennom eksamenskrav og laget plan.
@@ -169,6 +173,8 @@ Slik kan du kjøre appen på egen maskin:
 
 ### 8. desember - fullføringsflyt og gjennomgang med Reza(lærer)
 
+**Gjort**
+
 - Ryddet og forbedret strukturen i tasks.js
 - Implementert funksjon slik at oppgaver som markeres som fullført automatisk flyttes til done.html
 - Lagt til at brukeren videresendes til fullførte siden (done.html) når en oppgave fullføres
@@ -181,9 +187,22 @@ Slik kan du kjøre appen på egen maskin:
 
 ### 9. desember - Read me forbedringer etter tilbakemelding
 
+**Gjort**
+
 - Oppdatert og presisert instruksjonene om config.js og config.example.js
 - Gjenopprettet config.example.js 
 - Forbedringer av forsiden (idé om illustrasjon, bedre førsteinntrykk)
+- Ryddet og optimalisert all HTML/CSS (semantikk, struktur, W3C-validering – 0 feil).
+- Oppdatert navigasjon med ikoner og tydelig aktiv-side-markering.
+- Lagt inn enhetlig side-tittel (.page-title) på alle sider.
+- Gjort hele layouten responsiv ned til 375px.
+- Gjort siste UI-forbedringer (gradient header, kortdesign, tydeligere knapper).
+- Kontrollert hele JavaScript-strukturen (ryddig, konsistent og modulær).
+- Bekreftet at vær-API og AI-tips fungerer stabilt.
+- Testet alle funksjoner: legg til oppgave → lagring → fullfør → vis i done.html.
+
+Hvorfor:
+For å sikre en profesjonell, robust og brukervennlig løsning som møter alle krav i eksamensoppgaven.
 
 
 
@@ -205,12 +224,13 @@ Slik kan du kjøre appen på egen maskin:
 
 ## 5. Referanser og ressurser
 
-- OpenAI API-dokumentasjon  
-- OpenWeather API-dokumentasjon  
-- MDN Web Docs  
-- GitHub Guides  
-- Chrome DevTools / Lighthouse  
-- Qybele og mentor Reza
+- OpenAI API-dokumentasjon – brukt for å generere både værbaserte husarbeidstips og svar i Vaskebot (chatbot). Dokumentasjonen ble brukt til å forstå struktur for API-kall, modellvalg, feilhåndtering og meldingstyper (system/user).
+- OpenWeather API-dokumentasjon – brukt for å hente sanntidsvær med temperatur og beskrivelse. Dokumentasjonen ble benyttet for å sette opp korrekte URL-parametere, city-query, units, og struktur på JSON-responsen.
+- MDN Web Docs – primærkilde for HTML-, CSS- og JavaScript-syntaks, semantikk, accessibility, input-håndtering, og DOMContentLoaded. Brukt kontinuerlig under utvikling.
+- GitHub Guides – brukt for å lære commit/push, branching, .gitignore, repository-struktur og generell Git-arbeidsflyt.
+- Chrome DevTools / Lighthouse – brukt til testing, debugging, konsoll-feilhåndtering, performance-sjekker, responsivitet, og kontroll av localStorage.
+- Qybele og mentor Reza – viktige ressurser gjennom prosjektet (webinarer, gjennomgang av krav, tilbakemeldinger, debugging-hjelp og veiledning i struktur, API-bruk og prosjektforbedringer).
+- ChatGPT (OpenAI) - Brukt som støtteverktøy gjennom utviklingsprosessen til å forklare kode, foreslå løsninger ved feil, optimalisere struktur, kvalitetssikre semantikk, validere HTML/CSS/JS, og hjelpe med dokumentasjon (README-tekst, beskrivelser og formatering). All ferdig kode er gjennomgått, forstått og implementert av meg.
 ---
 
 ## 6. To-do-liste (oppdatert per 7. desember)
@@ -235,9 +255,9 @@ Slik kan du kjøre appen på egen maskin:
 | [x] | Lage automatisk AI-tips basert på vær |
 | [x] | Lagre oppgaver i localStorage |
 | [x] | Markere oppgaver som fullført og flytte dem |
-| [ ] | Fullføre styling på alle sider |
-| [ ] | Skrive refleksjonsjournal |
-| [ ] | Gjøre README helt klar for innlevering |
+| [x] | Fullføre styling på alle sider |
+| [x] | Skrive refleksjonsjournal |
+| [x] | Gjøre README helt klar for innlevering |
 
 ---
 
